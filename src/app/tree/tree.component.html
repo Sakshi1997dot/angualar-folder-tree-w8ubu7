@@ -1,0 +1,14 @@
+<ul>
+  <li *ngFor="let node of nodes; trackBy: trackNode">
+    <ng-container *ngIf="node.children?.length>0">
+      <button class="folder-button" (click)="onFolderButtonClick(node)">
+        <label class="folder-button-label" *ngIf="!node.expand">+</label>
+        <label class="folder-button-label" *ngIf="node.expand">-</label>
+      </button>
+      <!-- <img src="https://cdn4.iconfinder.com/data/icons/Pretty_office_icon_part_2/256/folder.png" *ngIf="!node.expand" class="folder-icon">
+      <img src="https://png.pngtree.com/svg/20170614/68aed7bb8b.png" *ngIf="node.expand" class="folder-icon"> -->
+    </ng-container>
+    <label [ngClass]="{'item-name': !node.children?.length }">{{node.name}}</label>
+    <tree *ngIf="node.children && node.expand" [nodes]="node.children"></tree>
+  </li>
+</ul>
